@@ -1,31 +1,21 @@
 # import the necessary packages
-import time
 import os
-import io
-from io import BytesIO
-import base64
 import flask
-import keras
 import random
-import pathlib
-import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 tf.enable_eager_execution()
-
 from flask import Flask, request, redirect, url_for, jsonify, send_file
-
 from werkzeug import secure_filename
 
-os.environ['CUDA_VISIBLE_DEVICES']='0'
-
 UPLOAD_FOLDER = 'static/uploads/'
+
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 #----- CONFIG -----#
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 app.static_folder = 'static'
 
 ##############################################################################################################################################################################################
@@ -208,6 +198,4 @@ def upload_file():
 
 #----- MAIN SENTINEL -----#
 if __name__ == '__main__':
-    port = 5000
-    host = '127.0.0.1'
-    app.run(host=host, port=port, threaded=True)
+    app.run()
