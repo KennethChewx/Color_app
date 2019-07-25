@@ -1,3 +1,3 @@
-web: gunicorn app:app
+web: gunicorn main:app
 heroku ps:scale web=1 --app color-appx
-worker: python app.py
+worker: python main.py
