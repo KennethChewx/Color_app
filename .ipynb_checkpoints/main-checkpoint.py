@@ -157,7 +157,6 @@ checkpoint = tf.train.Checkpoint(generator_optimizer=generator_optimizer,
                                  discriminator=discriminator)
 #Restore weights
 #checkpoint.restore(tf.train.latest_checkpoint(checkpoint_dir))
-checkpoint.restore(checkpoint_dir)
 
 def allowed_file(filename):
     return '.' in filename and \
