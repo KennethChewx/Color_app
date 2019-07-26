@@ -181,8 +181,8 @@ def upload_file():
             #for files in os.listdir('static/colored/'):
             #    os.remove('static/colored/'+str(files))
             filename = secure_filename(file.filename)
-            file.save(os.path.join('static/uploads/', filename))
-            image = tf.io.read_file(os.path.join('static/uploads/', filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            image = tf.io.read_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             image = tf.image.decode_jpeg(image)
             image = tf.cast(image, tf.float32)
             image = tf.image.grayscale_to_rgb(tf.image.rgb_to_grayscale(image))
