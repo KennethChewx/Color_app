@@ -180,10 +180,6 @@ def upload_file():
             #    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], files))
             #for files in os.listdir('static/colored/'):
             #    os.remove('static/colored/'+str(files))
-            for files in os.listdir('static/uploads/'):
-                os.remove('static/uploads/'+str(files))
-            for files in os.listdir('static/colored/'):
-                os.remove('static/colored/'+str(files))
             filename = secure_filename(file.filename)
             file.save(os.path.join('static/uploads/', filename))
             image = tf.io.read_file(os.path.join('static/uploads/', filename))
