@@ -179,10 +179,10 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             #first remove all files in upload and in color
-            #for files in os.listdir(os.path.join(app.config['UPLOAD_FOLDER'])):
-            #    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], files))
-            #for files in os.listdir('static/colored/'):
-            #    os.remove('static/colored/'+str(files))
+            for files in os.listdir(os.path.join(app.config['UPLOAD_FOLDER'])):
+                os.remove(os.path.join(MYDIR + "/" + app.config['UPLOAD_FOLDER'], files))
+            for files in os.listdir('static/colored/'):
+                os.remove('static/colored/'+str(files))
             filename = secure_filename(file.filename)
             #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             file.save(os.path.join(MYDIR + "/" + app.config['UPLOAD_FOLDER'], filename))
