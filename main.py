@@ -4,7 +4,6 @@ import flask
 import random
 import tensorflow as tf
 import matplotlib.pyplot as plt
-tf.enable_eager_execution()
 from flask import Flask, request, redirect, url_for, jsonify, send_file
 from werkzeug import secure_filename
 

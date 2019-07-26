@@ -4,7 +4,6 @@ import flask
 import random
 import tensorflow as tf
 import matplotlib.pyplot as plt
-tf.enable_eager_execution()
 from flask import Flask, request, redirect, url_for, jsonify, send_file
 from werkzeug import secure_filename
 
@@ -144,7 +143,7 @@ generator = Generator()
 discriminator = Discriminator()
 
 #load checkpoint weights
-checkpoint_dir = 'static/model_weights/'
+checkpoint_dir = 'static/model_weights'
 checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
 checkpoint = tf.train.Checkpoint(generator_optimizer=generator_optimizer,
                                  discriminator_optimizer=discriminator_optimizer,
