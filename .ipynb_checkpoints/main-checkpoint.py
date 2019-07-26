@@ -176,13 +176,17 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             #first remove all files in upload and in color
-            for files in os.listdir(os.path.join(app.config['UPLOAD_FOLDER'])):
-                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], files))
+            #for files in os.listdir(os.path.join(app.config['UPLOAD_FOLDER'])):
+            #    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], files))
+            #for files in os.listdir('static/colored/'):
+            #    os.remove('static/colored/'+str(files))
+            for files in os.listdir('static/uploads/'):
+                os.remove('static/uploads/'+str(files))
             for files in os.listdir('static/colored/'):
                 os.remove('static/colored/'+str(files))
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            image = tf.io.read_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join('static/uploads/', filename))
+            image = tf.io.read_file(os.path.join('static/uploads/', filename))
             image = tf.image.decode_jpeg(image)
             image = tf.cast(image, tf.float32)
             image = tf.image.grayscale_to_rgb(tf.image.rgb_to_grayscale(image))
