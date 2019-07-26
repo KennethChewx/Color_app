@@ -7,15 +7,18 @@ import matplotlib.pyplot as plt
 from flask import Flask, request, redirect, url_for, jsonify, send_file
 from werkzeug import secure_filename
 
+MYDIR = os.path.dirname(__file__)
 UPLOAD_FOLDER = 'static/uploads/'
-
+COLOR = 'static/colored/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 #----- CONFIG -----#
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['COLOR'] = COLOR
 app.config['DEBUG'] = False
 app.static_folder = 'static'
+
 
 ##############################################################################################################################################################################################
 #-------- MODEL -----------#
@@ -181,8 +184,10 @@ def upload_file():
             #for files in os.listdir('static/colored/'):
             #    os.remove('static/colored/'+str(files))
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            image = tf.io.read_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(MYDIR + "/" + app.config['UPLOAD_FOLDER'], filename))
+            #image = tf.io.read_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            image = tf.io.read_file(os.path.join(MYDIR + "/" + app.config['UPLOAD_FOLDER'], filename))
             image = tf.image.decode_jpeg(image)
             image = tf.cast(image, tf.float32)
             image = tf.image.grayscale_to_rgb(tf.image.rgb_to_grayscale(image))
