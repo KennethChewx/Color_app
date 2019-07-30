@@ -163,6 +163,11 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+init = tf.initialize_all_variables()    
+sess = tf.Session()
+sess.run(init)
+
+
 ##############################################################################################################################################################################################
 
 @app.route('/', methods=['GET', 'POST'])
@@ -197,7 +202,7 @@ def upload_file():
             image = tf.expand_dims(image,0)            
             prediction = generator(image, training=True)
             prediction = prediction[0] * 0.5 + 0.5
-            plt.imshow(prediction)
+            plt.imshow(sess.run(prediction))
             plt.axis('off')
             plt.savefig('static/colored/'+ str(filename), bbox_inches = 'tight', pad_inches = 0)
             return flask.render_template('results.html', url ='static/colored/'+str(filename), url2 = 'static/uploads/'+str(filename))
