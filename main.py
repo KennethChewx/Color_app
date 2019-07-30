@@ -197,8 +197,6 @@ def upload_file():
             image = tf.expand_dims(image,0)            
             prediction = generator(image, training=True)
             prediction = prediction[0] * 0.5 + 0.5
-            plt.figure(figsize=(15,15))
-            plt.subplot(1,1,1)
             plt.imshow(prediction)
             plt.axis('off')
             plt.savefig('static/colored/'+ str(filename), bbox_inches = 'tight', pad_inches = 0)
