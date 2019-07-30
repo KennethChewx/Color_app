@@ -1,5 +1,6 @@
 # import the necessary packages
 import os
+import numpy as np
 import flask
 import random
 import tensorflow as tf
